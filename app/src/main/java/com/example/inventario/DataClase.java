@@ -2,32 +2,29 @@ package com.example.inventario;
 
 public class DataClase {
 
-    private String dataTitle;
+    private String dataNombre;
     private String dataDesc;
-    private String dataLang;
+    private String dataPrec;
     private String dataImage;
     private String key;
-    private String getKey(){
-        return key;
-    }
 
-    public DataClase() {
+    public DataClase(String title, String desc, String pres, String imageURL) {
     }
 
     public DataClase(String dataTitle, String dataDesc, String dataLang, String dataImage, String key) {
-        this.dataTitle = dataTitle;
+        this.dataNombre = dataTitle;
         this.dataDesc = dataDesc;
-        this.dataLang = dataLang;
+        this.dataPrec = dataLang;
         this.dataImage = dataImage;
         this.key = key;
     }
 
-    public String getDataTitle() {
-        return dataTitle;
+    public String getDataNombre() {
+        return dataNombre;
     }
 
-    public void setDataTitle(String dataTitle) {
-        this.dataTitle = dataTitle;
+    public void setDataNombre(String dataNombre) {
+        this.dataNombre = dataNombre;
     }
 
     public String getDataDesc() {
@@ -38,12 +35,12 @@ public class DataClase {
         this.dataDesc = dataDesc;
     }
 
-    public String getDataLang() {
-        return dataLang;
+    public String getDataPrec() {
+        return dataPrec;
     }
 
-    public void setDataLang(String dataLang) {
-        this.dataLang = dataLang;
+    public void setDataPrec(String dataPrec) {
+        this.dataPrec = dataPrec;
     }
 
     public String getDataImage() {
@@ -54,6 +51,9 @@ public class DataClase {
         this.dataImage = dataImage;
     }
 
+    public String getKey(){
+        return key;
+    }
     public void setKey(String key) {
         this.key = key;
     }

@@ -18,6 +18,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.text.DateFormat;
+import java.util.Calendar;
+
 public class Subir extends AppCompatActivity {
 
     ImageView uploadImage;
@@ -43,6 +56,7 @@ public class Subir extends AppCompatActivity {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK){
+                            Intent data = result.getData();
                             uri = data.getData();
                             uploadImage.setImageURI(uri);
                         }else{
@@ -73,7 +87,7 @@ public class Subir extends AppCompatActivity {
         builder.setView(R.layout.progress_layout);
         AlertDialog dialog = builder.create();
         dialog.show();
-        storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot(){
+        storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot){
                 Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
@@ -87,7 +101,33 @@ public class Subir extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e){ dialog.dismiss();}
 
-    });
-}
+        });
+    }
+
+    public void uploadData(){
+        String title = uploadTopic.getText().toString();
+        String desc = uploadTopic.getText().toString();
+        String pres = uploadTopic.getText().toString();
+        DataClase dataClase = new DataClase(title, desc, pres, imageURL);
+
+        String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+        FirebaseDatabase.getInstance().getReference("Inventario Android").child(currentDate)
+                .setValue(dataClase).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(Subir.this, "Saved", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Subir.this, "Saved", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                });
+    }
+
 
 }

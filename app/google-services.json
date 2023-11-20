@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "65365755310",
-    "project_id": "inventario-54778",
-    "storage_bucket": "inventario-54778.appspot.com"
+    "project_number": "585164667453",
+    "project_id": "inventario-46527",
+    "storage_bucket": "inventario-46527.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:65365755310:android:2254976d6ca1ac5b65343f",
+        "mobilesdk_app_id": "1:585164667453:android:152c6dff64cd2da66b4854",
         "android_client_info": {
           "package_name": "com.example.inventario"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCIJOkH7X0BZmQWkIVwzxWqBzaTBhqWE8U"
+          "current_key": "AIzaSyA8AhyzhXEiGsF9TwUTMx7LWg5BoIyl_ew"
         }
       ],
       "services": {
